@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+.bg-gradient {
+    background: rgb(70,159,239);
+    background: linear-gradient(180deg, rgba(70,159,239,1) 0%, rgba(92,117,240,1) 48%, rgba(108,86,240,1) 100%);
+}
+
+.text-pagraph {
+    color: #343434;
+}
+
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.secondary-color {
+    color: #3629B7
+}
