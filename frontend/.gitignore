@@ -1,0 +1,23 @@
+# Dependencias
+node_modules/
+
+# Archivos de compilación
+dist/
+.local/
+
+# Archivos de caché
+.DS_Store
+.env.local
+.env.*.local
+*.log
+
+# IDEs y editores
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Otros
+/public/uploads/
