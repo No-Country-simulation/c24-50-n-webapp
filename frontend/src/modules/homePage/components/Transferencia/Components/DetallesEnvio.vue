@@ -2,6 +2,8 @@
 import { useStore } from '../../../store';
 import { ref, watchEffect } from 'vue';
 import IconDown from '@/components/icons/iconDown.vue';
+import BaseInput from '@/components/ui/BaseInput.vue';
+import BaseButton from '@/components/ui/BaseButton.vue';
 
 const store = useStore();
 const formData = ref({
@@ -20,11 +22,17 @@ watchEffect(() => {
 <template>
     <div class="detalles-envio">
         <div>Favoritos</div>
+        
         <form class="form-transferencia">
             <div class="input-container">
                 <input id="numberaccount" v-model="formData.numberaccount" type="text" placeholder="Número de cuenta" />
             </div>
+            <BaseInput 
+            :class="'border border-[#000] text-sm p-1 py-2 w-100'"
+            v-model="formData.numberaccount"
+            />
             <div class="input-container">
+                <
                 <input id="amount" v-model="formData.amount" type="number" placeholder="Monto" />
             </div>
             <div class="input-container description">
@@ -43,7 +51,10 @@ watchEffect(() => {
                 </div>
                 <IconDown class="icon-down"/>
             </div>
-            <div class="button-container">
+            <div class="button-conta">
+                <BaseButton>
+                    Enviar
+                </BaseButton>
                 <button type="submit">Enviar</button>
             </div>
         </form>
@@ -127,7 +138,7 @@ watchEffect(() => {
         margin-top: auto;
         
     }
-    button {
+    /* button {
         width: 327px;
         height: 44px;
         border-radius: 15px;
@@ -136,6 +147,6 @@ watchEffect(() => {
         font-size: 16px;
         font-weight: 500;
         cursor: pointer;
-    }
+    } */
 
 </style>

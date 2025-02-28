@@ -5,7 +5,6 @@
     <userCard>
 
       <div class="auth-layout">
-        <!-- <div class="p-4 sm:p-6 md:p-8 lg:p-10 font-poppins"> -->
         <div class="font-poppins">
           <slot></slot>
         </div>

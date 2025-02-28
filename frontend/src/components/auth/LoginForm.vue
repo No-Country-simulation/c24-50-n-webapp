@@ -3,7 +3,6 @@
       <h2 class="title secondary-color font-medium text-xl">Bienvenido</h2>
       <p class="text-pagraph text-sm font-poppins">Inicia sesión para continuar</p>
       
-      <!-- <img src="@/assets/lock.png" class="lock-icon" alt="Lock" /> -->
       <div class="flex justify-center">
        <CircleIcon>
           <IconPadlockGradient/>
@@ -17,6 +16,7 @@
       <div class="flex justify-end mb-3">
         <p class="text-xs text-gray-500 cursor-pointer">¿Olvidaste la contraseña?</p>
       </div>
+      <Captcha/>
       <div class="mt-6">
         <BaseButton @click="login">Iniciar Sesión</BaseButton>
       </div>
@@ -36,6 +36,7 @@
     import BaseButton from "@/components/ui/BaseButton.vue";
     import CircleIcon from "../common/CircleIcon.vue";
     import IconPadlockGradient from "../icons/IconPadlockGradient.vue";
+    import Captcha from "./Captcha.vue";
   
   const dni = ref("");
   const password = ref("");

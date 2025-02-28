@@ -16,7 +16,7 @@ const components = {
 </script>
 
 <template>
-    <div class="container">
+    <div class="flex flex-col items-center">
         <HeaderTransferencia />
         <ContentTransferencia>
             <template v-slot:content>
@@ -31,7 +31,6 @@ const components = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
     height: 743px;
 }   
 </style>

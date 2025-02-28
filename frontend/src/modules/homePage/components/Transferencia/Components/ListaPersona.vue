@@ -48,6 +48,7 @@
         overflow-y: auto;
         gap: 24px;
         }
+        
     .list-container::-webkit-scrollbar {
         display: none;
     }
