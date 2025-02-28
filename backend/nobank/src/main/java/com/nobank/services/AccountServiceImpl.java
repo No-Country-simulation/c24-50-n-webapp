@@ -1,15 +1,14 @@
 package com.nobank.services;
 
-import java.util.List;
-
+import com.nobank.domain.model.Account;
+import com.nobank.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nobank.domain.model.Account;
-import com.nobank.repositories.AccountRepository;
+import java.util.List;
 
 @Service
-public class AccountServiceImpl implements AccountService{
+public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
@@ -32,5 +31,10 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public void eliminar(Long id) {
         accountRepository.deleteById(id);
+    }
+
+    @Override
+    public Account findByAccountNumber(String accountNumber) {
+        return accountRepository.findByAccountNumber(accountNumber).orElseThrow();
     }
 }

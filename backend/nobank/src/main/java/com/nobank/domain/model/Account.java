@@ -1,17 +1,13 @@
 package com.nobank.domain.model;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;  
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
-
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -35,7 +31,7 @@ public class Account {
     private Double balance;
     private String status;
 
-    
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
 }

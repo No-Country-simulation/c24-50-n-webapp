@@ -1,35 +1,23 @@
 package com.nobank.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-import jakarta.validation.constraints.*;
-import lombok.*;
-
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString(exclude = "password")
 @Table(name = "users")
 public class User {
@@ -58,7 +46,7 @@ public class User {
 
     @Column(nullable = false)
     private String status;
-    
+
     @JsonIgnoreProperties(value = {"roles", "handler", "hibernateLazyInitializer"})
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -68,7 +56,7 @@ public class User {
             uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role_id"})}
     )
     private List<Role> roles = new ArrayList<>();
-    
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -82,6 +70,6 @@ public class User {
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
-    
-    
+
+
 }

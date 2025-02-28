@@ -1,13 +1,12 @@
 package com.nobank.services;
 
-import java.util.List;
-
+import com.nobank.domain.model.User;
+import com.nobank.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.nobank.domain.model.User;
-import com.nobank.repositories.UserRepository;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {

@@ -1,8 +1,8 @@
 package com.nobank.services;
 
-import java.util.List;
-
 import com.nobank.domain.model.User;
+
+import java.util.List;
 
 public interface UserService {
     List<User> listarUsuarios();
@@ -16,7 +16,7 @@ public interface UserService {
     void eliminarUsuario(Long id);
 
     User buscarPorEmail(String email);
-    
+
     User buscarPorDni(String dni);
 
 }

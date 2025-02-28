@@ -1,9 +1,12 @@
 package com.nobank.repositories;
 
+import com.nobank.domain.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.nobank.domain.model.Account;
+import java.util.Optional;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
+
+    Optional<Account> findByAccountNumber(String accountNumber);
 
 }
