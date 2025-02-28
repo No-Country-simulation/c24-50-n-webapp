@@ -1,12 +1,21 @@
 <script setup>
+    import iconVolver from '@/components/icons/IconVolver.vue';
+    import { useStore } from '../../../store';
 
-import iconVolver from '@/components/icons/IconVolver.vue';
+    const store = useStore();
 
+    const handleVolver = () => {
+        if (store.slotContent === 'DetallesEnvio') {
+            store.setSlotContent('ListaPersona');
+        } else {
+        
+        }
+    };
 </script>
 <template>
     <div class="header-transferencia">
         
-        <iconVolver class="icon-volver" />
+        <iconVolver class="icon-volver" @click="handleVolver" />
         <div>Tranferir dinero a</div>
     </div>
 </template>

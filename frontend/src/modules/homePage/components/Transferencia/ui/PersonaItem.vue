@@ -1,8 +1,19 @@
 <script setup>
 import iconGo from '@/components/icons/IconGo.vue';
+import { useStore } from '../../../store';
 const props = defineProps({
-    nombre: String,
+    persona: Object,
 });
+
+const store = useStore();
+
+const emit = defineEmits(['EnviarItem']);
+
+const EnviarItem = () => {
+    store.setPersonaSeleccion(props.persona);
+    store.setSlotContent('DetallesEnvio');
+    emit('EnviarItem');
+};
 
 
 </script>
@@ -11,8 +22,8 @@ const props = defineProps({
         <div class="icono-persona">
             <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="icono persona" width="30" height="30">
         </div>
-        <div>{{nombre}}</div>
-        <iconGo class="icon-go" />
+        <div>{{ persona.name }}</div>
+        <iconGo class="icon-go" @click="EnviarItem" />
     </div>
 </template>
 <style scoped>
