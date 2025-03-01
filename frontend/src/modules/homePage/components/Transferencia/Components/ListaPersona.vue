@@ -1,6 +1,7 @@
 <script setup>
     import { ref, computed } from 'vue';
     import personaItem from '../ui/PersonaItem.vue';
+    import BaseInput from '@/components/ui/BaseInput.vue';
     const personaList = [
         { name: 'Andree', numberaccount: '1234567890' },
         { name: 'Carlos', numberaccount: '9876543210' },
@@ -14,6 +15,13 @@
         { name: 'Valeria', numberaccount: '7531594820' },
         { name: 'Jorge', numberaccount: '9517534680' },
         { name: 'Ana', numberaccount: '1239876540' },
+        { name: 'Ana', numberaccount: '1239876540' },
+        { name: 'Ana', numberaccount: '1239876540' },
+        { name: 'Ana', numberaccount: '1239876540' },
+        { name: 'Ana', numberaccount: '1239876540' },
+        { name: 'Ana', numberaccount: '1239876540' },
+
+        
 
     ];
     const filterText = ref('');
@@ -26,11 +34,11 @@
     });
 </script>
 <template>
-    <div class="content-transferencia">
-        <div class="search">
-            <input type="text" v-model="filterText" placeholder="Buscar persona" />
+    <div class="w-full h-full min-h-[400px] flex flex-col">
+        <div class=" pb-4" >
+            <BaseInput v-model="filterText" placeholder="Buscar persona " class="w-full h-10 border border-gray-300 rounded-lg px-4 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-600" />
         </div>
-        <div class="list-container">
+        <div class="flex-1 overflow-y-auto space-y-4">
             <personaItem v-for="(persona, index) in filteredPersonas" 
                 :key="index"
                 :persona="persona"
@@ -40,7 +48,7 @@
     </div>
 </template>
 <style scoped> 
-    .list-container {
+    /* .list-container {
         display: flex;
         flex-direction: column;
         height: 552px;
@@ -75,6 +83,6 @@
         border-radius: 10px;
         padding: 0 16px;
         background-color: #0000001f;
-    }
+    } */
 
 </style>

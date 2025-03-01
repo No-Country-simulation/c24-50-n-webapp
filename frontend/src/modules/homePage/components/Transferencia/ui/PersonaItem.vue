@@ -18,28 +18,14 @@ const EnviarItem = () => {
 
 </script>
 <template>
-    <div class="persona-item">
-        <div class="icono-persona">
+    <div class="persona-item flex flex-row items-center">
+        <div class="icono-persona mr-4">
             <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="icono persona" width="30" height="30">
         </div>
         <div>{{ persona.name }}</div>
-        <iconGo class="icon-go" @click="EnviarItem" />
+        <iconGo class="icon-go ml-auto h-[40px]" @click="EnviarItem" />
     </div>
 </template>
 <style scoped>
 
-.icono-persona {
-    margin-right: 16px;
-}
-.persona-item {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    height: 40px;
-    width: 100%;
-    }
-.icon-go {
-    cursor: pointer;
-    margin-left: auto;
-}
 </style>

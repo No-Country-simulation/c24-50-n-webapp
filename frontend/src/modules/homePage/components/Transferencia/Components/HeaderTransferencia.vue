@@ -1,5 +1,6 @@
 <script setup>
     import iconVolver from '@/components/icons/IconVolver.vue';
+    import IconVolver from '@/components/ui/BaseButtonNavbar.vue'
     import { useStore } from '../../../store';
 
     const store = useStore();
@@ -7,34 +8,14 @@
     const handleVolver = () => {
         if (store.slotContent === 'DetallesEnvio') {
             store.setSlotContent('ListaPersona');
-        } else {
-        
+        } if (store.slotContent === 'DetallesConfirmacion') {
+            store.setSlotContent('DetallesEnvio');
         }
     };
 </script>
 <template>
-    <div class="header-transferencia">
-        
+    <div class="header-transferencia flex flex-row items-center justify-between h-12 w-full">
         <iconVolver class="icon-volver" @click="handleVolver" />
-        <div>Tranferir dinero a</div>
+        <div class="mr-4">Transferir dinero a</div>
     </div>
 </template>
-<style scoped> 
-    .header-transferencia {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 36px;
-        width: 360px;
-        }
-    .header-transferencia div {
-        font-size: 20px;
-        font-weight: 500;
-        
-        width: 80%;
-    }
-    .icon-volver {
-        cursor: pointer;
-    }
-
-</style>

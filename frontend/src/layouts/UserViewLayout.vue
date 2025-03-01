@@ -4,8 +4,8 @@
   <div class="bg-[#FFFDFF] flex justify-center">
     <userCard>
 
-      <div class="auth-layout">
-        <div class="font-poppins">
+      <div class="auth-layout max-h-70 h-full">
+        <div class="font-poppins w-full h-full ">
           <slot></slot>
         </div>
       </div>

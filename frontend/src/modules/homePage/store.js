@@ -15,6 +15,11 @@ export const useStore = defineStore('transferencia', {
         },
         setFormData(data) {
             this.formData = data;
+        },
+        resetStore() {
+            this.slotContent = 'ListaPersona';
+            this.personaSeleccion = null;
+            this.formData = {};
         }
         
     }
