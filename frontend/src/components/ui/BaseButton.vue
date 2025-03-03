@@ -1,11 +1,11 @@
 <template>
-    <button :class="class">
+    <button :class="buttonClass" >
       <slot></slot>
     </button>
   </template>
     <script setup>
     defineProps({
-      class: {type: String, default: "w-full py-1 rounded-xl bg-gradient text-white text-lg cursor-pointer transition-opacity hover:opacity-80" }
+      buttonClass: {type: String, default: "w-full py-1 rounded-xl bg-gradient text-white text-lg cursor-pointer transition-opacity hover:opacity-80" }
     });
     
     defineEmits(["update:modelValue"]);
