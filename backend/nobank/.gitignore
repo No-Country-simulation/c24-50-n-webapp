@@ -35,3 +35,6 @@ build/
 src/main/resources/application.properties
 .env
 
+pom.xml
+.vscode/launch.json
+

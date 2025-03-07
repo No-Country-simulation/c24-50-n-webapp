@@ -11,7 +11,7 @@ public interface UserService {
 
     boolean existsByUsername(String username);
 
-    void guardarUsuario(User user);
+    User guardarUsuario(User user);
 
     void eliminarUsuario(Long id);
 

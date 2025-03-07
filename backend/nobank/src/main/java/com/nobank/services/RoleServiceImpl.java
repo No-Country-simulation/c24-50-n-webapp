@@ -2,6 +2,7 @@ package com.nobank.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,15 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Optional<Role> buscarRolePorNombre(String nombre) {
         return roleRepository.findByName(nombre);
+    }
+
+    @Override
+    public List<Role> buscarRolesPorIds(List<Long> ids) {
+        return ids.stream()
+                .map(roleRepository::findById)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toList());
     }
 
 }

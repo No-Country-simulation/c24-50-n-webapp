@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -57,6 +56,10 @@ public class User {
     )
     private List<Role> roles = new ArrayList<>();
 
+    @JsonIgnoreProperties(value = {"user", "handler", "hibernateLazyInitializer"})
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Account> accounts = new ArrayList<>();
+    
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -70,6 +73,4 @@ public class User {
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
-
-
 }

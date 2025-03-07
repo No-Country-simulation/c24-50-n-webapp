@@ -1,6 +1,7 @@
 package com.nobank.services;
 
 import com.nobank.domain.model.Account;
+import com.nobank.domain.model.User;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface AccountService {
     void eliminar(Long id);
 
     Account findByAccountNumber(String accountNumber);
+    
+    Account crearCuentaParaUsuario(User usuario);
 }

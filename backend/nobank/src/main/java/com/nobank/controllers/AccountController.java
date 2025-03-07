@@ -46,11 +46,11 @@ public class AccountController {
     }
 
     // BALANCE
-    @GetMapping("/balance")
+   /* @GetMapping("/balance")
     public ResponseEntity<Map<String, Double>> getBalance(@PathVariable String accountNumber) {
         var response = new HashMap<String, Double>();
         Account account = accountService.findByAccountNumber(accountNumber);
         response.put("balance", account.getBalance());
         return ResponseEntity.ok(response);
-    }
+    } */
 }
