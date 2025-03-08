@@ -82,6 +82,7 @@ public class UserServiceImpl implements UserService {
     private UserResponse entityToResponse(User entity) {
         var response = new UserResponse();
         BeanUtils.copyProperties(entity, response);
+        entity.getAccounts().forEach(account -> response.setAccountNumber(account.getAccountNumber()));
         return response;
     }
 }

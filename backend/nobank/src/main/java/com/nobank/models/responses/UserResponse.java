@@ -19,6 +19,7 @@ public class UserResponse implements Serializable {
     private String dni;
     private String email;
     private String status;
+    private String accountNumber;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
