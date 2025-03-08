@@ -13,7 +13,7 @@
 <script setup>
 import { useRouter } from 'vue-router';
 
-defineProps({
+const props = defineProps({
   title: String,
   bgColor: String,
   icon: Object,
@@ -23,8 +23,8 @@ defineProps({
 const router = useRouter();
 
 const navigate = () => {
-  if (url) {
-    router.push(url);
+  if (props.url) {
+    router.push(props.url);
   }
 };
 </script>

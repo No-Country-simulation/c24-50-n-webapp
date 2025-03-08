@@ -1,4 +1,4 @@
-<template>
+  <template>
     <div class="user-card">
       <slot></slot>
     </div>

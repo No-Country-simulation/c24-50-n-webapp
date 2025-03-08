@@ -11,5 +11,10 @@ export default [
       name: 'HomeDetails',
       component: () => import('@/modules/homePage/views/HomeDetails.vue'),
     },
+    {
+      path: '/transferencia',
+      name: 'transferencia',
+      component: () => import('@/modules/homePage/views/TransferenciaView.vue'),
+    }
   ];
   
