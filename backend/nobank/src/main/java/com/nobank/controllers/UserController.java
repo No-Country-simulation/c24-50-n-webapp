@@ -1,6 +1,10 @@
 package com.nobank.controllers;
 
-import com.nobank.domain.model.User;
+import com.nobank.entities.User;
+import com.nobank.models.requests.UserRequest;
+import com.nobank.models.responses.UserResponse;
+import com.nobank.services.AccountService;
+import com.nobank.services.RoleService;
 import com.nobank.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -8,31 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-//import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.nobank.domain.model.Account;
-import com.nobank.domain.model.Role;
-import com.nobank.domain.model.User;
-import com.nobank.services.AccountService;
-import com.nobank.services.RoleService;
-import com.nobank.services.UserService;
-
-import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 
 
 //@CrossOrigin(origins = "*") // Permite peticiones desde cualquier origen - Aqui va la URL de React o Frontend
@@ -51,7 +35,7 @@ public class UserController {
 
     @Operation(summary = "Listar todos los usuarios")
     @GetMapping
-    public List<User> listarUsuarios() {
+    public List<UserResponse> listarUsuarios() {
         return userService.listarUsuarios();
     }
 
@@ -71,7 +55,7 @@ public class UserController {
     // 🔹 Registrar nuevo usuario CLIENTE
     @Operation(summary = "Registrar nuevo usuario CLIENTE")
     @PostMapping("/register")
-    public ResponseEntity<?> registrarUsuario(@Valid @RequestBody User user, BindingResult result) {
+    public ResponseEntity<?> registrarUsuario(@Valid @RequestBody UserRequest request, BindingResult result) {
 
         // Validar errores de entrada
         if (result.hasErrors()) {
@@ -84,56 +68,51 @@ public class UserController {
         }
 
         // Verificar si el email ya existe
-        if (userService.buscarPorEmail(user.getEmail()) != null) {
+        if (userService.buscarPorEmail(request.getEmail()) != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(Map.of("error", "El email ya está registrado."));
         }
 
         // Verificar si el DNI ya existe
-        if (userService.buscarPorDni(user.getDni()) != null) {
+        if (userService.buscarPorDni(request.getDni()) != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(Map.of("error", "El DNI ya está registrado."));
         }
 
         // Verificar si el username ya existe
-        if (userService.existsByUsername(user.getUsername())) {
+        if (userService.existsByUsername(request.getUsername())) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(Map.of("error", "El nombre de usuario ya está en uso."));
         }
 
-        // Guardar usuario
-        userService.guardarUsuario(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
-
-        // Guardar usuario y crear cuenta automáticamente
-        User nuevoUsuario = userService.guardarUsuario(user);
-        Account nuevaCuenta = accountService.crearCuentaParaUsuario(nuevoUsuario);
-
-        // Asignar cuenta al usuario
-        nuevoUsuario.getAccounts().add(nuevaCuenta);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.userService.guardarUsuario(request));
     }
 
-    @Operation(summary = "Asignar roles a un usuario")
-    @PutMapping("/{userId}/roles")
-    public ResponseEntity<?> asignarRoles(@PathVariable Long userId, @RequestBody List<Long> roleIds) {
-        User usuario = userService.buscarPorId(userId);
+//    @Operation(summary = "Asignar roles a un usuario")
+//    @PutMapping("/{userId}/roles")
+//    public ResponseEntity<?> asignarRoles(@PathVariable Long userId, @RequestBody List<Long> roleIds) {
+//        User usuario = userService.buscarPorId(userId);
+//
+//        if (usuario == null) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
+//        }
+//
+//        List<Role> roles = roleService.buscarRolesPorIds(roleIds);
+//
+//        if (roles.isEmpty()) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ningún rol válido encontrado");
+//        }
+//
+//        usuario.setRoles(roles);
+//        userService.guardarUsuario(usuario);
+//
+//        return ResponseEntity.ok(usuario);
+//    }
 
-        if (usuario == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
-        }
-
-        List<Role> roles = roleService.buscarRolesPorIds(roleIds);
-
-        if (roles.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ningún rol válido encontrado");
-        }
-
-        usuario.setRoles(roles);
-        userService.guardarUsuario(usuario);
-
-        return ResponseEntity.ok(usuario);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        this.userService.eliminarUsuario(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

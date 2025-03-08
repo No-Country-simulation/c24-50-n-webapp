@@ -1,7 +1,7 @@
 package com.nobank.services;
 
-import com.nobank.domain.model.Account;
-import com.nobank.domain.model.User;
+import com.nobank.entities.Account;
+import com.nobank.entities.User;
 
 import java.util.List;
 

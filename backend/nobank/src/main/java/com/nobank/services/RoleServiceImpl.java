@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.nobank.domain.model.Role;
+import com.nobank.entities.Role;
 import com.nobank.repositories.RoleRepository;
 
 @Service
