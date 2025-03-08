@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-NobankApplication<nobank>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.nobank.NobankApplication",
+            "projectName": "nobank",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
