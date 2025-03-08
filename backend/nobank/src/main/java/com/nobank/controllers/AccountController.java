@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //@CrossOrigin(origins = "*") // Permite peticiones desde cualquier origen - Aqui va la URL de React o Frontend
 @RequestMapping("/api/accounts")
@@ -44,11 +46,11 @@ public class AccountController {
     }
 
     // BALANCE
-   /* @GetMapping("/balance")
+    @GetMapping("/balance/{accountNumber}")
     public ResponseEntity<Map<String, Double>> getBalance(@PathVariable String accountNumber) {
         var response = new HashMap<String, Double>();
         Account account = accountService.findByAccountNumber(accountNumber);
         response.put("balance", account.getBalance());
         return ResponseEntity.ok(response);
-    } */
+    }
 }
