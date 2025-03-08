@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useStore = defineStore('transferencia', {
     state: () => ({
-        slotContent: 'ListaPersona',
+        slotContent: '',
         personaSeleccion: null,
         formData: {}
     }),
@@ -17,7 +17,7 @@ export const useStore = defineStore('transferencia', {
             this.formData = data;
         },
         resetStore() {
-            this.slotContent = 'ListaPersona';
+            this.slotContent = '';
             this.personaSeleccion = null;
             this.formData = {};
         }

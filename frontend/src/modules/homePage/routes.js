@@ -15,6 +15,11 @@ export default [
       path: '/transferencia',
       name: 'transferencia',
       component: () => import('@/modules/homePage/views/TransferenciaView.vue'),
+    },
+    {
+      path: '/movimientos',
+      name: 'movimientos',
+      component: () => import('@/modules/homePage/views/MovementsView.vue'),
     }
   ];
   

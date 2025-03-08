@@ -19,7 +19,8 @@ const components = {
     
 };
 onMounted(() => {
-    store.resetStore(); // Reinicia el estado del store cuando el componente se monta
+    store.resetStore();
+    store.setSlotContent('ListaPersona');
 });
 </script>
 
