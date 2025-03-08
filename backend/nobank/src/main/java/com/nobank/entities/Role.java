@@ -1,30 +1,32 @@
-package com.nobank.domain.model;
+package com.nobank.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 @Getter
 @Setter
-@Entity
-@Table(name = "transaction_types")
-public class TransactionType {
+@Table(name = "roles")
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    @JsonIgnoreProperties("roles") // ✅  Ajustado para evitar recursión en la serialización JSON
+    @ManyToMany(mappedBy = "roles")
+    private List<User> usuarios;
 
     @PrePersist
     public void prePersist() {
@@ -36,4 +38,5 @@ public class TransactionType {
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
+
 }

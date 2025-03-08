@@ -1,6 +1,6 @@
 package com.nobank.controllers;
 
-import com.nobank.domain.model.Account;
+import com.nobank.entities.Account;
 import com.nobank.services.AccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 //@CrossOrigin(origins = "*") // Permite peticiones desde cualquier origen - Aqui va la URL de React o Frontend
 @RequestMapping("/api/accounts")

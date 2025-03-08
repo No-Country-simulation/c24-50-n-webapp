@@ -1,8 +1,8 @@
 package com.nobank.services;
 
 
-import com.nobank.domain.model.Account;
-import com.nobank.domain.model.User;
+import com.nobank.entities.Account;
+import com.nobank.entities.User;
 import com.nobank.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,6 +61,7 @@ public class AccountServiceImpl implements AccountService {
         account.setAccountNumber(generarNumeroCuenta());
         account.setUser(usuario);
         account.setBalance(0.0);
+        account.setStatus(usuario.getStatus());
         account.setCreatedAt(LocalDateTime.now());
         account.setUpdatedAt(LocalDateTime.now());
 

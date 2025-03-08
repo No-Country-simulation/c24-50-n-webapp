@@ -1,16 +1,16 @@
 package com.nobank.services;
 
-import com.nobank.domain.model.Account;
-import com.nobank.domain.model.User;
+import com.nobank.entities.User;
+import com.nobank.models.requests.UserRequest;
+import com.nobank.models.responses.UserResponse;
 import com.nobank.repositories.UserRepository;
-
-import java.util.List;
-
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
+import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Service
@@ -23,8 +23,10 @@ public class UserServiceImpl implements UserService {
     private AccountService accountService;
 
     @Override
-    public List<User> listarUsuarios() {
-        return userRepository.findAll();
+    public List<UserResponse> listarUsuarios() {
+        return userRepository.findAll().stream()
+                .map(this::entityToResponse)
+                .toList();
     }
 
     @Override
@@ -40,23 +42,31 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public User guardarUsuario(User user) {
+    public UserResponse guardarUsuario(UserRequest request) {
+
+        var userToPersist = User.builder()
+                .username(request.getUsername())
+                .dni(request.getDni())
+                .password(request.getPassword())
+                .email(request.getEmail())
+                .status("active")
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .build();
+
         // Guardar el usuario primero
-        userRepository.save(user);
+        var userPersisted = userRepository.save(userToPersist);
 
         // Crear la cuenta para el usuario
-        Account nuevaCuenta = accountService.crearCuentaParaUsuario(user);
+        accountService.crearCuentaParaUsuario(userPersisted);
 
-        // Asociar la cuenta al usuario
-        user.setAccounts(Collections.singletonList(nuevaCuenta)); // Asignar la cuenta al usuario
-
-        // Guardar el usuario con la cuenta asociada
-        return userRepository.save(user); // Guardamos el usuario con la cuenta ahora asociada
+        return this.entityToResponse(userPersisted);
     }
 
     @Override
     public void eliminarUsuario(Long id) {
-        userRepository.deleteById(id);
+        var userFromToDelete = this.userRepository.findById(id).orElseThrow();
+        userRepository.delete(userFromToDelete);
     }
 
     @Override
@@ -67,6 +77,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User buscarPorDni(String dni) {
         return userRepository.findByDni(dni).orElse(null);
+    }
+
+    private UserResponse entityToResponse(User entity) {
+        var response = new UserResponse();
+        BeanUtils.copyProperties(entity, response);
+        return response;
     }
 }
 

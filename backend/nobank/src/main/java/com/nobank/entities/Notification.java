@@ -1,4 +1,4 @@
-package com.nobank.domain.model;
+package com.nobank.entities;
 
 import java.time.LocalDateTime;
 
@@ -17,39 +17,31 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "transactions")       
-public class Transaction {
+@Table(name = "notifications")
+public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "from_account_id")
-    private Account fromAccount;
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "to_account_id")
-    private Account toAccount;
-
-    @ManyToOne
-    @JoinColumn(name = "transaction_type_id")
-    private TransactionType transactionType;
-
-    private Double amount;
-    private LocalDateTime date;
-    private String status;
-    
+    private String title;
+    private String message;
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private LocalDateTime readAt;
+    private String status;
 
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
-    }   
+    }
 
     @PreUpdate
     public void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
+        this.readAt = LocalDateTime.now();
     }
+ 
 }

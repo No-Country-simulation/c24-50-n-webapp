@@ -1,6 +1,6 @@
 package com.nobank.repositories;
 
-import com.nobank.domain.model.Account;
+import com.nobank.entities.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

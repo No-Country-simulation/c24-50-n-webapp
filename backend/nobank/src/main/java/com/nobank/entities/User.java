@@ -1,4 +1,4 @@
-package com.nobank.domain.model;
+package com.nobank.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,6 +19,7 @@ import java.util.List;
 @Setter
 @ToString(exclude = "password")
 @Table(name = "users")
+@Builder
 public class User {
 
     @Id
@@ -63,14 +64,4 @@ public class User {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
 }

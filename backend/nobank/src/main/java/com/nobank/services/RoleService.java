@@ -3,7 +3,7 @@ package com.nobank.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.nobank.domain.model.Role;
+import com.nobank.entities.Role;
 
 public interface RoleService {
     List<Role> listarRoles();
