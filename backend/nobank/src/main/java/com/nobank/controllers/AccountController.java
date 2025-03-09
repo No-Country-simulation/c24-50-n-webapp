@@ -53,4 +53,13 @@ public class AccountController {
         response.put("balance", account.getBalance());
         return ResponseEntity.ok(response);
     }
+
+    // MOVIMIENTOS
+    @GetMapping("/movements/{accountNumber}")
+    public ResponseEntity<Map<String, Object>> getMovements(@PathVariable String accountNumber) {
+        var response = new HashMap<String, Object>();
+        Account account = accountService.findByAccountNumber(accountNumber);
+        response.put("movimientos", account.getTransactions());
+        return ResponseEntity.ok(response);
+    }
 }
