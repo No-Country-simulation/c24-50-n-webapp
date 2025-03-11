@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     @click="navigate"
     class="flex items-center cursor-pointer transition-all p-2 rounded-3xl "
     :class="isSelected ? 'bg-gradient text-white' : 'text-gray-500'"

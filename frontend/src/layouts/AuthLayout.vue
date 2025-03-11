@@ -8,7 +8,7 @@
         :text = "'Regresar'"
       />
     </div>
-    <div class="bg-white rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 font-poppins">
+    <div class="bg-[#FFFDFF] rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 font-poppins">
       <slot></slot>
     </div>
   </div>
