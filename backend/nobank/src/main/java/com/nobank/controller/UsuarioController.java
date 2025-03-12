@@ -4,6 +4,7 @@ import com.nobank.domain.usuario.DatosRegistroUsuario;
 import com.nobank.domain.usuario.Usuario;
 import com.nobank.domain.usuario.UsuarioDTO;
 import com.nobank.service.UsuarioService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,8 @@ public class UsuarioController {
 
 
     @PostMapping("")
-    public ResponseEntity<?> registrarUsuarioCliente(@RequestBody DatosRegistroUsuario datosRegistroUsuario) {
-        Usuario usuario = usuarioService.registrarUsuarioCliente(datosRegistroUsuario);
+    public ResponseEntity<?> registrarUsuarioCliente(@RequestBody DatosRegistroUsuario datosRegistroUsuario, HttpServletRequest request) {
+        Usuario usuario = usuarioService.registrarUsuarioCliente(datosRegistroUsuario, request);
         return ResponseEntity.ok(usuario);
     }
 

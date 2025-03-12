@@ -50,11 +50,12 @@ public class Usuario implements UserDetails {
     @Column(nullable = true)
     private String ipUltimaConexion;
 
-    public Usuario(String dni, String contraseñaHash, RolTipo rolTipo) {
+    public Usuario(String dni, String contraseñaHash, RolTipo rolTipo, String ipUltimaConexion) {
         this.dni = dni;
         this.contraseñaHash = contraseñaHash;
         this.rolTipo = rolTipo;
         this.estado = true;
+        this.ipUltimaConexion = ipUltimaConexion;
     }
 
     @Override
