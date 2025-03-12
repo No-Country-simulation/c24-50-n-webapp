@@ -1,7 +1,5 @@
 package com.nobank.domain.usuario;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.nobank.domain.cuenta.Cuenta;
 import com.nobank.domain.perfil.Perfil;
 import com.nobank.domain.rolTipo.RolTipo;
@@ -27,6 +25,7 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String dni;
 
     @Column(nullable = false)
@@ -44,6 +43,12 @@ public class Usuario implements UserDetails {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Cuenta> cuentas;
+
+    @Column(nullable = false)
+    private Integer intentosFallidos = 0;
+
+    @Column(nullable = true)
+    private String ipUltimaConexion;
 
     public Usuario(String dni, String contraseñaHash, RolTipo rolTipo) {
         this.dni = dni;
@@ -85,6 +90,14 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void incrementarIntentosFallidos() {
+        this.intentosFallidos++;
+    }
+
+    public void resetIntentosFallidos() {
+        this.intentosFallidos = 0;
     }
 }
 

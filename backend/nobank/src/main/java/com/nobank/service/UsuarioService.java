@@ -58,6 +58,10 @@ public class UsuarioService {
         return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 
+    public Usuario buscarUsuarioPorDni(String dni){
+        return (Usuario) usuarioRepository.findByDni(dni);
+    }
+
     private String generarNumeroCuenta() {
         SecureRandom random = new SecureRandom();
         StringBuilder numeroCuenta = new StringBuilder();
@@ -79,5 +83,9 @@ public class UsuarioService {
                 usuario.getCuentas().get(0).getId(),
                 usuario.getCuentas().get(0).getBalance()
         );
+    }
+
+    public void guardarUsuario(Usuario usuario){
+        usuarioRepository.save(usuario);
     }
 }
