@@ -7,6 +7,7 @@ import BaseButton from '@/components/ui/BaseButton.vue';
 import IconStar from '@/components/icons/IconStar.vue';
 
 const store = useStore();
+
 const formData = ref({
     numberaccount: '',
     amount: '',
@@ -14,11 +15,6 @@ const formData = ref({
 });
 
 const errorMessage = ref('');
-
-onMounted(async () => {
-    await store.fetchPersonaDatos(1);
-    console.log(store.personaDatos);
-});
 
 const emit = defineEmits(['irConfirmacion']);
 

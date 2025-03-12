@@ -6,11 +6,14 @@ import IconoTransferencia from '@/components/icons/IconTransferencia.vue';
 import IconoServicios from '@/components/icons/IconService.vue';
 import { useStore } from '@/modules/homePage/store';
 
+
+
 const store = useStore();
 
+
 onMounted(async () => {
-  await store.fetchMovimientos(1);  // Espera a que los datos se carguen
-  console.log(store.movimientos);  // Ahora puedes ver los movimientos cargados
+  await store.fetchPersonaDatosFromToken();
+  await store.fetchMovimientos(store.personaDatos.id_Cuenta);
 });
 
 const searchActive = ref(false);
@@ -30,7 +33,7 @@ const handleSearchClose = () => {
 };
 
 const filteredMovements = computed(() => {
-  const movements = store.movimientos; // Accede directamente a los movimientos
+  const movements = store.movimientos;
   if (!searchQuery.value) return movements;
   return movements.filter(movement => 
     movement.name.toLowerCase().includes(searchQuery.value.toLowerCase()))
