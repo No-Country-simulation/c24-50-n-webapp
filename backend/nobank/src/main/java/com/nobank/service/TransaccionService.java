@@ -42,15 +42,16 @@ public class TransaccionService {
     }
 
     public List<TransaccionDTO> obtenerMovimientosDeCuenta(Long cuentaId) {
-        List<Transaccion> transacciones = transaccionRepository.findByCuentaOrigenIdOrCuentaDestinoId(cuentaId, cuentaId)
+        List<Transaccion> transacciones = transaccionRepository.findByCuentaOrigenIdOrCuentaDestinoIdOrderByFechaDesc(cuentaId, cuentaId)
                 .orElseThrow(() -> new RuntimeException("No se encontraron transacciones"));
 
         return transacciones.stream().map(transaccion -> {
             boolean esIngreso = transaccion.getCuentaDestino().getId().equals(cuentaId);
             return new TransaccionDTO(
                     transaccion.getId(),
-                    transaccion.getMonto(),
-                    esIngreso ? "INGRESO" : "EGRESO",
+                    esIngreso ? transaccion.getCuentaOrigen().getUsuario().getPerfil().getNombre() : transaccion.getCuentaDestino().getUsuario().getPerfil().getNombre(),
+                    "Transferencia",
+                    esIngreso ? transaccion.getMonto() : transaccion.getMonto().negate(),
                     transaccion.getCuentaOrigen().getId(),
                     transaccion.getCuentaDestino().getId(),
                     transaccion.getEstado(),

@@ -20,7 +20,7 @@ const components = {
 };
 onMounted(() => {
     store.resetStore();
-    store.setSlotContent('ListaPersona');
+    store.setSlotContent('DetallesEnvio');
 });
 </script>
 
