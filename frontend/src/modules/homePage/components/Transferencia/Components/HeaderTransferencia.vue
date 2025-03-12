@@ -2,12 +2,16 @@
     import iconVolver from '@/components/icons/IconVolver.vue';
     import IconVolver from '@/components/ui/BaseButtonNavbar.vue'
     import { useStore } from '../../../store';
+    import { useRouter } from 'vue-router';
 
     const store = useStore();
+    const router = useRouter();
 
     const handleVolver = () => {
         if (store.slotContent === 'DetallesEnvio') {
-            store.setSlotContent('ListaPersona');
+            store.resetStore();
+            router.push('/user-home');
+
         } if (store.slotContent === 'DetallesConfirmacion') {
             store.setSlotContent('DetallesEnvio');
         }
