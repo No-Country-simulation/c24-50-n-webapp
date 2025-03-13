@@ -28,3 +28,7 @@ fly.toml
 *.njsproj
 *.sln
 *.sw?
+
+# Ignorar archivos específicos del backend
+backend/nobank/HELP.md
+backend/nobank/target/
