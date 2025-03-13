@@ -7,10 +7,16 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Build artifacts
 node_modules
 dist
 dist-ssr
 *.local
+
+# Environment and configuration files
+*.env.properties
+.dockerignore
+fly.toml
 
 # Editor directories and files
 .vscode/*
