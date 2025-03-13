@@ -7,7 +7,8 @@ const store = useStore();
 
 const emit = defineEmits(['enviar']);
 
-const enviar = () => {
+const enviar = async () => {
+    await store.tranferir()
     store.setSlotContent('ExitoTransferencia');
     emit('enviar');
 };
@@ -20,8 +21,8 @@ const enviar = () => {
             <div class="my-4">
                 <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="icono persona" width="30" height="30" class="m-auto" />
             </div>
-            <div class="mt-[32px]">{{ store.personaSeleccion.name}}</div>
-            <div>{{ store.personaSeleccion.numberaccount }}</div>
+            <div class="mt-[32px]">{{ store.personaSeleccion.nombre}}</div>
+            <div>{{ store.formData.numberaccount }}</div>
         </div>
         <div class="w-full my-4">
             <div>${{ store.formData.amount }}</div>
@@ -37,8 +38,8 @@ const enviar = () => {
                         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="icono persona" width="30" height="30">
                     </div>
                     <div class="content-card flex flex-col justify-center items-start ml-4">
-                        <div>**** 2236</div>
-                        <div>balance: $ 120.000</div>
+                        <div>{{ store.personaDatos.numeroCuenta }}</div>
+                        <div>balance: {{ store.personaDatos.balance }}</div>
                     </div>
                     <IconDown class="icon-down ml-auto" />
             </div>

@@ -3,6 +3,8 @@ package com.nobank.controller;
 import com.nobank.domain.usuario.DatosAutentificadorUsuario;
 import com.nobank.domain.usuario.Usuario;
 import com.nobank.infra.security.DatosJWTtoken;
+import com.nobank.infra.security.SecurityService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,40 +26,26 @@ public class LoginController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private TokenServices tokenServices;
+    @Autowired
+    private SecurityService securityService;
 
     @PostMapping
-    public ResponseEntity<?> autenticarUsuario(@RequestBody @Valid DatosAutentificadorUsuario datosAutentificacionUsuario) {
-        Authentication authToken = new UsernamePasswordAuthenticationToken(datosAutentificacionUsuario.login(), datosAutentificacionUsuario.password());
-        var usuarioAutenticado = authenticationManager.authenticate(authToken);
-        var JWTtoken = tokenServices.generarToken((Usuario) usuarioAutenticado.getPrincipal());
-        return ResponseEntity.ok(new DatosJWTtoken(JWTtoken));
-    }
-
-    @PostMapping("/testlogin")
-    public ResponseEntity<?> testLogin(@RequestBody @Valid DatosAutentificadorUsuario datosAutentificacionUsuario) {
-        // Crear el token de autenticación usando los datos proporcionados
-        Authentication authToken = new UsernamePasswordAuthenticationToken(
-                datosAutentificacionUsuario.login(), datosAutentificacionUsuario.password()
-        );
-
+    public ResponseEntity<?> autenticarUsuario(@RequestBody @Valid DatosAutentificadorUsuario datosAutentificacionUsuario, HttpServletRequest request) {
         try {
-            var usuarioAutenticado = authenticationManager.authenticate(authToken);
-            return ResponseEntity.ok("Login exitoso para el usuario: " + usuarioAutenticado.getName());
+
+            String ipActual = securityService.obtenerIpCliente(request);
+            Authentication authToken = new UsernamePasswordAuthenticationToken(
+                    datosAutentificacionUsuario.login(), datosAutentificacionUsuario.password());
+            Authentication usuarioAutenticado = authenticationManager.authenticate(authToken);
+            securityService.resetIntentosFallidos(datosAutentificacionUsuario.login());
+            var JWTtoken = tokenServices.generarToken((Usuario) usuarioAutenticado.getPrincipal());
+            securityService.procesarAccesoDesdeNuevaUbicacion(datosAutentificacionUsuario.login(), ipActual);
+            return ResponseEntity.ok(new DatosJWTtoken(JWTtoken));
 
         } catch (BadCredentialsException e) {
+            securityService.procesarIntentoFallido(datosAutentificacionUsuario.login());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
         }
     }
 
-    @PostMapping("/verificar")
-    public ResponseEntity<?> verificarToken(@RequestBody String token) {
-        try {
-            String subject = tokenServices.getSubject(token);
-            return ResponseEntity.ok("Token válido para: " + subject);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Token inválido");
-
-
-        }
-    }
 }

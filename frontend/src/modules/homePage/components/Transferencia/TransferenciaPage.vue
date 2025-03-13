@@ -18,9 +18,10 @@ const components = {
     ExitoTransferencia,
     
 };
-onMounted(() => {
+onMounted(async () => {
     store.resetStore();
-    store.setSlotContent('ListaPersona');
+    store.setSlotContent('DetallesEnvio');
+    await store.fetchPersonaDatosFromToken();
 });
 </script>
 
@@ -41,10 +42,4 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 743px;
-}    */
 </style>

@@ -11,7 +11,7 @@ const componentes = {
 };
 
 
-const paginActual = computed(() => store.slotContent);
+const paginaActual = computed(() => store.slotContent);
 
 onMounted(() => {
     store.resetStore();
@@ -20,7 +20,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <component :is="componentes[paginActual]"></component>
+    <component :is="componentes[paginaActual]"></component>
 </template>
 
 <style scoped>

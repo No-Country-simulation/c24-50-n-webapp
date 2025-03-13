@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TransaccionRepository extends JpaRepository<Transaccion,Long> {
-    Optional<List<Transaccion>> findByCuentaOrigenIdOrCuentaDestinoId(Long cuentaOrigenId, Long cuentaDestinoId);
+    Optional<List<Transaccion>> findByCuentaOrigenIdOrCuentaDestinoIdOrderByFechaDesc(Long cuentaOrigenId, Long cuentaDestinoId);
 }

@@ -5,8 +5,9 @@ import java.time.LocalDateTime;
 
 public record TransaccionDTO(
         Long id,
-        BigDecimal monto,
-        String tipoMovimiento,
+        String name,
+        String type,
+        BigDecimal amount,
         Long cuentaOrigenId,
         Long cuentaDestinoId,
         String estado,
