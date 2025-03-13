@@ -32,4 +32,23 @@ const router = createRouter({
   ],
 })
 
+
+const isAuthenticated = () => {
+  const token = sessionStorage.getItem('token')
+  return !!token 
+}
+
+
+const publicRoutes = ['/', '/about', '/login', '/register',]
+
+
+router.beforeEach((to, from, next) => {
+  if (!publicRoutes.includes(to.path) && !isAuthenticated()) {
+    next('/login')
+  } else {
+    next() 
+  }
+})
+
+
 export default router

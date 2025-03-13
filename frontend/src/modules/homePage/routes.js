@@ -20,6 +20,11 @@ export default [
       path: '/movimientos',
       name: 'movimientos',
       component: () => import('@/modules/homePage/views/MovementsView.vue'),
+    },
+    {
+      path: '/notificaciones',
+      name: 'notificaciones',
+      component: () => import('@/modules/homePage/views/NotificationsView.vue'),
     }
   ];
   

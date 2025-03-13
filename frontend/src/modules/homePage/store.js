@@ -9,6 +9,7 @@
         formData: {},
         personaDatos: Object,
         movimientos: [],
+        notificaciones: [],
     }),
     actions: {
         setSlotContent(content) {
