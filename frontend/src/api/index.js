@@ -1,7 +1,8 @@
 import axios from "axios";
+import router from "@/router"; 
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL, 
   headers: {
     "Content-Type": "application/json",
   },
@@ -15,12 +16,30 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+api.interceptors.response.use(
+  response => response, 
+  error => {
+    if (error.response) {
+      if (error.response.status === 401) {
+        sessionStorage.removeItem("token"); 
+        router.push("/login");
+      }
+      if (error.response.status === 403) {
+        sessionStorage.removeItem("token"); 
+        router.push("/login"); 
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
+
 export const login = async (credentials) => {
   try {
     const response = await api.post("/login", credentials);
     const token = response.data.JWTtoken;
 
-    sessionStorage.setItem("token", token);
+    sessionStorage.setItem("token", token); // Guarda el token en sessionStorage
 
     return token;
   } catch (error) {
@@ -31,6 +50,7 @@ export const login = async (credentials) => {
 
 export const logout = () => {
   sessionStorage.removeItem("token");
+  router.push("/login");
 };
 
 export const getData = async (endpoint) => {
