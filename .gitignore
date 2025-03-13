@@ -8,7 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Build artifacts
-node_modules
+frontend/node_modules/
 dist
 dist-ssr
 *.local
@@ -32,3 +32,4 @@ fly.toml
 # Ignorar archivos específicos del backend
 backend/nobank/HELP.md
 backend/nobank/target/
+frontend/.env
