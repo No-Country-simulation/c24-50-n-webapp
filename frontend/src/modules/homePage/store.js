@@ -27,6 +27,7 @@
             this.personaDatos = {};
             this.formData = {};
             this.movimientos = []; 
+            this.notificaciones = [];
         },
         async fetchMovimientos(id) {
             try {
@@ -75,6 +76,14 @@
             } catch (error) {
                 console.error("Error realizando transferencia", error);
                 throw error;
+            }
+        },
+        async fetchNotificacionesFromId(id) {
+            try {
+                const data = await getData(`/notificaciones/${id}`);
+                this.notificaciones = data;
+            } catch (error) {
+                console.error("Error obteniendo notificaciones", error);
             }
         }
     },

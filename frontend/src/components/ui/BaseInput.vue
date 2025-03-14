@@ -56,8 +56,10 @@ const togglePasswordVisibility = () => {
 };
 
 const typeInput = computed(() => {
-  if (props.type == "text") return "text";
-  return showPassword.value ? "text" : "password";
+  if (props.type === "password") {
+    return showPassword.value ? "text" : "password";
+  }
+  return props.type;
 });
 
 </script>

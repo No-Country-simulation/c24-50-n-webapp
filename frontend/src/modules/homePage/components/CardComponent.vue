@@ -55,7 +55,7 @@
             fill="white" />
 
         <text x="14%" y="68%" dominant-baseline="middle" class="font-semibold" font-size="20" fill="white">
-            {{ props.balance }}
+            {{ formattedBalance }}
         </text>
         
         <defs>
@@ -105,6 +105,7 @@
 
 <script setup>
 import { computed } from 'vue';
+import { formatToUSD } from '@/utils/jwtid';
 
 const props = defineProps({
     nombre: String,
@@ -119,6 +120,9 @@ const formattedCuenta = computed(() => {
     return {primerosCuatro, ultimosCuatro};
 });
 
+const formattedBalance = computed(() => {
+    return formatToUSD(props.balance);
+});
 
 </script>
 

@@ -8,3 +8,10 @@ export function decodeJWT(token) {
   
     return JSON.parse(jsonPayload); // Parseamos el JSON decodificado
   }
+
+export const formatToUSD = (amount) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(amount);
+};

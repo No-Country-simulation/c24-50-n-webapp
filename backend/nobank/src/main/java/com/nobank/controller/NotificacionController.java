@@ -1,6 +1,7 @@
 package com.nobank.controller;
 
 import com.nobank.domain.notificacion.Notificacion;
+import com.nobank.domain.notificacion.NotificacionDTO;
 import com.nobank.domain.usuario.Usuario;
 import com.nobank.service.NotificacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,8 @@ public class NotificacionController {
         return "Notificación creada con éxito";
     }
 
-    // Obtener todas las notificaciones de un usuario
-    @GetMapping("/usuario/{usuarioId}")
-    public List<Notificacion> obtenerNotificacionesPorUsuario(@PathVariable Long usuarioId) {
+    @GetMapping("/{usuarioId}")
+    public List<NotificacionDTO> obtenerNotificacionesPorUsuario(@PathVariable Long usuarioId) {
         return notificacionService.obtenerNotificacionesPorUsuario(usuarioId);
     }
 }
