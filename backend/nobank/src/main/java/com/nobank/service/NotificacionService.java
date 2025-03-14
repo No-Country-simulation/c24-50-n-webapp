@@ -1,12 +1,14 @@
 package com.nobank.service;
 
 import com.nobank.domain.notificacion.Notificacion;
+import com.nobank.domain.notificacion.NotificacionDTO;
 import com.nobank.domain.usuario.Usuario;
 import com.nobank.repository.NotificacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class NotificacionService {
@@ -26,9 +28,18 @@ public class NotificacionService {
         return notificacionRepository.save(notificacion);
     }
 
-    public List<Notificacion> obtenerNotificacionesPorUsuario(Long id) {
+    public List<NotificacionDTO> obtenerNotificacionesPorUsuario(Long id) {
         Usuario usuario = usuarioService.buscarUsuarioPorId(id);
-        return notificacionRepository.findByUsuario(usuario);
+        List<Notificacion> notificaciones = notificacionRepository.findByUsuarioOrderByFechaDesc(usuario);
+        return notificaciones.stream()
+                .map(notificacion -> new NotificacionDTO(
+                        notificacion.getId(),
+                        notificacion.getFecha(),
+                        notificacion.getMensaje(),
+                        notificacion.getTipo(),
+                        notificacion.getUsuario().getId()))
+                .collect(Collectors.toList());
+
     }
 
     public List<Notificacion> obtenerTodasLasNotificaciones() {

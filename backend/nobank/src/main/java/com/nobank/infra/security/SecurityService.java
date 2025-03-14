@@ -55,7 +55,7 @@ public class SecurityService {
                 // Se detecta un acceso desde una nueva IP
                 notificacionService.crearNotificacion(usuario.getId(),
                         "Se ha detectado un acceso desde una nueva ubicación (IP: " + ipActual + ")",
-                        "ALERTA DE SEGURIDAD");
+                        "Seguridad");
             }
 
             usuario.setIpUltimaConexion(ipActual);
