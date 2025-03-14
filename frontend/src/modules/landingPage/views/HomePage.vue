@@ -1,11 +1,11 @@
 <template>
     <LandigPageLayout>
         <template #principalContent>
-            <BackGroundLanding class="fixed inset-0 top-[-1%] bg-cover bg-center z-[-1]" />
+            <BackGroundLanding class="fixed inset-0 top-[-1%] bg-cover bg-center z-[-1] " />
             <div class="mx-50 mt-12">
-                <div class="grid grid-cols-2">
+                <div class="grid grid-cols-1 md:grid-cols-2">
                     <div>
-                        <p class="text-[55px] text-white font-bold">Tu Futuro Financiero en un Solo Lugar</p>
+                        <p class="text-3xl md:text-[55px] text-white font-bold">Tu Futuro Financiero en un Solo Lugar</p>
                         <p class="text-white font-thin text-[#B6B3EB] mt-16">Descubre una plataforma segura y moderna
                             diseñada para brindarte soluciones financieras adaptadas a tus necesidades.</p>
 

@@ -1,4 +1,5 @@
 <template>
+    <div class="w-full h-full object-cover md:object-contain" >
     <svg viewBox="0 0 1920 1064" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="1920" height="961" fill="white" />
         <rect width="1920" height="961" fill="url(#paint0_linear_14_3826)" />
@@ -49,15 +50,10 @@
             </linearGradient>
         </defs>
     </svg>
+    </div>
 </template>
 
 <script setup>
 
 </script>
 
-<style scoped>
-svg{
-    width: 100%;
-    height: 100%;
-}
-</style>

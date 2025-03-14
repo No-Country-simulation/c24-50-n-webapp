@@ -1,24 +1,21 @@
 <template>
-
     <header>
-        <div class="mx-50">
-            <HeaderNavbar />
-        </div>
+      <div class="container mx-auto px-4 py-4">
+        <HeaderNavbar />
+      </div>
     </header>
-
+  
     <section>
-        <slot name="principalContent"></slot>
+      <slot name="principalContent"></slot>
     </section>
-
+  
     <footer>
-        <slot name="footerContent" >
-
-        </slot>
+      <div >
+        <slot name="footerContent"></slot>
+      </div>
     </footer>
-
-
-</template>
-<script setup>
-import HeaderNavbar from '@/components/layout/HeaderNavbar.vue';
-
-</script>
+  </template>
+  
+  <script setup>
+  import HeaderNavbar from '@/components/layout/HeaderNavbar.vue';
+  </script>

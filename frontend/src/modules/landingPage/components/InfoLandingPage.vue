@@ -1,6 +1,6 @@
 <template>
     <p class="text-2xl font-medium">Nuestros Beneficios Clave</p>
-    <OptionsBenefits/>
+    <OptionsBenefits class="justify-center"/>
 </template>
 
 <script setup>
