@@ -22,7 +22,7 @@ import IconWithdraw from '@/components/icons/IconWithdraw.vue';
 import IconDeposit from '@/components/icons/IconDeposit.vue';
 
 const options = [
-  { title: "Mi cuenta", bgColor: "bg-yellow-600", icon: IconWallet, url: "/billetera" },
+  { title: "Mi cuenta", bgColor: "bg-yellow-600", icon: IconWallet, url: "#" },
   { title: "Transferencia", bgColor: "bg-red-600", icon: IconTransfer, url: "/transferencia" },
   { title: "Retiro", bgColor: "bg-gray-600", icon: IconWithdraw, url: "/retiro" },
   { title: "Depositar", bgColor: "bg-purple-600", icon: IconDeposit, url: "/deposito" },

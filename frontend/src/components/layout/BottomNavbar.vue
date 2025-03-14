@@ -7,7 +7,7 @@
                 :title="option.title" 
                 :icon="option.icon" 
                 :url="option.url"
-                :isSelected="option.url === currentRoute"
+                :isSelected="option.url == currentRoute"
             />
         </nav>
     </div>
@@ -24,12 +24,10 @@ import IconMagnifyingGlass from '../icons/IconMagnifyingGlass.vue';
 const route = useRoute();
 const currentRoute = route.path; 
 
-console.log(currentRoute)
-
 const options = [
   { title: "Inicio", icon: IconHome, url: "/user-home" },
-  { title: "Buscar", icon: IconMagnifyingGlass, url: "/transferencia" },
-  { title: "Notificaciones", icon: IconLetter, url: "/retiro" },
-  { title: "Ajustes", icon: IconGear, url: "/deposito" },
+  { title: "Buscar", icon: IconMagnifyingGlass, url: "/buscar" },
+  { title: "Notificaciones", icon: IconLetter, url: "/" },
+  { title: "Ajustes", icon: IconGear, url: "/" },
 ];
 </script>

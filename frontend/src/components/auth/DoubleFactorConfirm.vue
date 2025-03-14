@@ -21,6 +21,9 @@
   <script setup>
   import { ref, onMounted } from 'vue';
   import BaseButton from "@/components/ui/BaseButton.vue";
+  import { useRouter } from 'vue-router';
+
+  const router = useRouter();
   
   const digits = ref(Array(6).fill(''));
   const inputs = ref([]);
@@ -45,6 +48,7 @@
   };
   
   const submitCode = () => {
+    goToChangePassword()
     const code = digits.value.join('');
     if (code.length === 6) {
       console.log('Código 2FA enviado:', code);
@@ -53,6 +57,10 @@
       error.value = 'El código debe tener 6 dígitos.';
     }
   };
+
+  const goToChangePassword = () => {
+    router.push("/change-password")
+}
   
   onMounted(() => {
     inputs.value[0].focus();

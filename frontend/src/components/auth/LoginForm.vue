@@ -14,7 +14,7 @@
     <BaseInput v-model="password" type="password" placeholder="Contraseña" />
 
     <div class="flex justify-end mb-3">
-      <p class="text-xs text-gray-500 cursor-pointer">¿Olvidaste la contraseña?</p>
+      <p class="text-xs text-gray-500 cursor-pointer hover:text-gray-900" @click="goToForgotPassword">¿Olvidaste la contraseña?</p>
     </div>
     <Captcha />
     
@@ -40,6 +40,8 @@ import BaseButton from "@/components/ui/BaseButton.vue";
 import CircleIcon from "../common/CircleIcon.vue";
 import IconPadlockGradient from "../icons/IconPadlockGradient.vue";
 import Captcha from "./Captcha.vue";
+import Swal from 'sweetalert2'
+
 
 const dni = ref("");
 const password = ref("");
@@ -52,13 +54,29 @@ const login = async () => {
     
     authStore.login(token);
     router.push("/user-home");
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Bienvenido",
+      showConfirmButton: false,
+      timer: 1500
+    });
+
   } catch (error) {
-    console.error("Error de autenticación:", error);
-    alert("Error al iniciar sesión. Verifica tus credenciales.");
+    Swal.fire({
+      title: "Credenciales incorrectas",
+      text: "Verifique por favor su usuario y contraseña",
+      icon: "error"
+    });
   }
 };
 
 const goToRegister = () => {
   router.push("/signup");
 };
+
+const goToForgotPassword = () => {
+  router.push("/recover")
+}
+
 </script>

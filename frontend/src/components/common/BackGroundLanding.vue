@@ -1,15 +1,15 @@
 <template>
     <div class="w-full h-full object-cover md:object-contain" >
-    <svg viewBox="0 0 1920 1064" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="1920" height="961" fill="white" />
-        <rect width="1920" height="961" fill="url(#paint0_linear_14_3826)" />
+    <svg viewBox="0 0 1920 3500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1920" height="3500" fill="white" />
+        <rect width="1920" height="3500" fill="url(#paint0_linear_14_3826)" />
         <g filter="url(#filter0_f_14_3826)">
             <circle cx="1370.5" cy="416.5" r="293.5" fill="#6158FF" fill-opacity="0.6" />
         </g>
         <mask id="mask0_14_3826" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1920"
-            height="961">
-            <rect width="1920" height="961" fill="white" />
-            <rect width="1920" height="961" fill="url(#paint1_linear_14_3826)" />
+            height="3500">
+            <rect width="1920" height="3500" fill="white" />
+            <rect width="1920" height="3500" fill="url(#paint1_linear_14_3826)" />
         </mask>
         <g mask="url(#mask0_14_3826)">
             <g filter="url(#filter1_f_14_3826)">
@@ -26,13 +26,13 @@
                 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                 <feGaussianBlur stdDeviation="177" result="effect1_foregroundBlur_14_3826" />
             </filter>
-            <filter id="filter1_f_14_3826" x="-1096" y="-323" width="1968" height="2165" filterUnits="userSpaceOnUse"
+            <filter id="filter1_f_14_3826" x="-1096" y="-323" width="1968" height="3500" filterUnits="userSpaceOnUse"
                 color-interpolation-filters="sRGB">
                 <feFlood flood-opacity="0" result="BackgroundImageFix" />
                 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                 <feGaussianBlur stdDeviation="292" result="effect1_foregroundBlur_14_3826" />
             </filter>
-            <filter id="filter2_f_14_3826" x="-24" y="-639" width="1600" height="1344" filterUnits="userSpaceOnUse"
+            <filter id="filter2_f_14_3826" x="-24" y="-639" width="1600" height="3500" filterUnits="userSpaceOnUse"
                 color-interpolation-filters="sRGB">
                 <feFlood flood-opacity="0" result="BackgroundImageFix" />
                 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
