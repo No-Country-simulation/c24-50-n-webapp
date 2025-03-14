@@ -1,10 +1,10 @@
 <template>
-<div class="flex relative">
-    <img src="@/assets/img-girl-cell.jpg" class="w-[80%]" alt="chicha con celular confiando en noBank">
+<div class="md:flex md:relative">
+    <img src="@/assets/img-girl-cell.jpg" class="w-[100%] md:w-[80%]" alt="chicha con celular confiando en noBank">
 
-    <div class="absolute bg-white rounded-lg shadow h-70 w-120 right-[-4%] top-1/2 transform -translate-y-1/2">
+    <div class="md:absolute bg-white rounded-lg shadow h-70 md:w-120 md:right-[-4%] md:top-1/2 md:transform md:-translate-y-1/2">
         <div class="m-6">
-            <p class="text-4xl font-medium">¿Listo para el Futuro? ¡Regístrate y Usa NoBank!</p>
+            <p class="text-xl md:text-4xl font-medium">¿Listo para el Futuro? ¡Regístrate y Usa NoBank!</p>
             <p class="text-gray-600 font-thin mt-6 ">¡Regístrate y Usa Nuestra Plataforma!</p>
             <BaseButton
                 class="mt-6"

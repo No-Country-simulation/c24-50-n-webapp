@@ -41,7 +41,7 @@ const isAuthenticated = () => {
 }
 
 
-const publicRoutes = ['/', '/about', '/login', '/register',]
+const publicRoutes = ['/', '/about', '/login', '/register', '/recover','/recover-code','/change-password','/change-success']
 
 
 router.beforeEach((to, from, next) => {

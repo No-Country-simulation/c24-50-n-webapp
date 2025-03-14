@@ -14,7 +14,7 @@
             type="password"
             labelClass="text-sm text-gray-500"
         />
-        <BaseButton class="mt-12">
+        <BaseButton class="mt-12" @click="goToConfirm">
             Cambiar la contraseña
         </BaseButton>
 
@@ -25,7 +25,13 @@
 import { ref } from "vue";
 import BaseInput from "@/components/ui/BaseInput.vue";
 import BaseButton from "@/components/ui/BaseButton.vue";
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const dni = ref("");
 const dniConfirm = ref("");
+
+const goToConfirm = () => {
+    router.push('/change-success')
+}
 </script>
