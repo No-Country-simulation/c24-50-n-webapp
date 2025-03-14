@@ -2,8 +2,15 @@
   <div class="input-group" :class="classInputGroup">
     <label :for="uniqueId" :class="labelClass">{{ label }}</label>
     <div class="relative">
-      <input :id="uniqueId" :class="inputClass" :type="typeInput" :placeholder="placeholder"
-        :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="inputRef" />
+      <input 
+        :id="uniqueId" 
+        :class="inputClass" 
+        :type="typeInput" 
+        :placeholder="placeholder"
+        :value="modelValue" 
+        @input="$emit('update:modelValue', $event.target.value)" 
+        ref="inputRef" 
+      />
       <button v-if="type === 'password'" type="button" class="absolute inset-y-0 right-3 flex items-center"
         @click="togglePasswordVisibility">
         <IconEye :show="showPassword" />
@@ -15,6 +22,7 @@
 <script setup>
 import { ref, nextTick, computed } from "vue";
 import IconEye from "../icons/IconEye.vue";
+
 const props = defineProps({
   modelValue: String,
   placeholder: String,
@@ -61,5 +69,4 @@ const typeInput = computed(() => {
   }
   return props.type;
 });
-
 </script>
