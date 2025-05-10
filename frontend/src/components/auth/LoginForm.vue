@@ -10,7 +10,7 @@
     </div>
 
 
-    <BaseInput v-model="dni" placeholder="DNI" />
+    <BaseInput v-model="dni" type="text" placeholder="DNI" />
     <BaseInput v-model="password" type="password" placeholder="Contraseña" />
 
     <div class="flex justify-end mb-3">
@@ -33,6 +33,8 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { login as apiLogin } from "@/api/index"; // Importa la función login
+import { useAuthStore } from "@/stores/auth"; // Importa el store de autenticación
 import BaseInput from "@/components/ui/BaseInput.vue";
 import BaseButton from "@/components/ui/BaseButton.vue";
 import CircleIcon from "../common/CircleIcon.vue";
@@ -42,9 +44,18 @@ import Captcha from "./Captcha.vue";
 const dni = ref("");
 const password = ref("");
 const router = useRouter();
+const authStore = useAuthStore();
 
-const login = () => {
-  console.log("DNI:", dni.value, "Password:", password.value);
+const login = async () => {
+  try {
+    const token = await apiLogin({ login: dni.value, password: password.value });
+    
+    authStore.login(token);
+    router.push("/user-home");
+  } catch (error) {
+    console.error("Error de autenticación:", error);
+    alert("Error al iniciar sesión. Verifica tus credenciales.");
+  }
 };
 
 const goToRegister = () => {

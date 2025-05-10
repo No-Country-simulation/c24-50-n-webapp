@@ -3,13 +3,20 @@ import BaseButton from '@/components/ui/BaseButton.vue';
 import IconCheck from '@/components/icons/IconCheck.vue';
 import { useStore } from '../../../store';
 import { useRouter } from 'vue-router';
+import { computed } from 'vue';
+import { formatToUSD } from '../../../../../utils/jwtid';
 
 const router = useRouter();
 const store = useStore();
 
 const volverInicio = () => {
+    store.resetStore();
     router.push('/user-home');
 };
+
+const formattedAmount = computed(() => {
+    return formatToUSD(store.formData.amount);
+});
 
 </script>
 <template>
@@ -19,9 +26,9 @@ const volverInicio = () => {
                     <IconCheck />
                 </div>
                 <div class="text-2xl text-[#65558F]">Haz enviado <br />
-                    ${{ store.formData.amount }} <br />
+                    {{ formattedAmount }} <br />
                     a <br /> 
-                    {{ store.personaSeleccion.name}}</div>
+                    {{ store.personaSeleccion.nombre}}</div>
             </div>
             <div class="flex flex-col items-center justify-center h-[40%] w-full p-4">
                 <div class="h-[56px]">Ver Comprobante</div>
