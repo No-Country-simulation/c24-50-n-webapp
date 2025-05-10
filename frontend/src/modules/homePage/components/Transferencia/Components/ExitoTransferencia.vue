@@ -8,6 +8,7 @@ const router = useRouter();
 const store = useStore();
 
 const volverInicio = () => {
+    store.resetStore();
     router.push('/user-home');
 };
 
@@ -21,7 +22,7 @@ const volverInicio = () => {
                 <div class="text-2xl text-[#65558F]">Haz enviado <br />
                     ${{ store.formData.amount }} <br />
                     a <br /> 
-                    {{ store.personaSeleccion.name}}</div>
+                    {{ store.personaSeleccion.nombre}}</div>
             </div>
             <div class="flex flex-col items-center justify-center h-[40%] w-full p-4">
                 <div class="h-[56px]">Ver Comprobante</div>

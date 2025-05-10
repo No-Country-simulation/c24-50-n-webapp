@@ -48,6 +48,6 @@ const login = () => {
 };
 
 const goToRegister = () => {
-  router.push("/register");
+  router.push("/login");
 };
 </script>

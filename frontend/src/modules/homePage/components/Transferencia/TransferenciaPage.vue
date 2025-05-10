@@ -18,8 +18,10 @@ const components = {
     ExitoTransferencia,
     
 };
-onMounted(() => {
-    store.resetStore(); // Reinicia el estado del store cuando el componente se monta
+onMounted(async () => {
+    store.resetStore();
+    store.setSlotContent('DetallesEnvio');
+    await store.fetchPersonaDatosFromToken();
 });
 </script>
 
@@ -40,10 +42,4 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 743px;
-}    */
 </style>

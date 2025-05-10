@@ -27,6 +27,6 @@ const options = [
   { title: "Retiro", bgColor: "bg-gray-600", icon: IconWithdraw, url: "/retiro" },
   { title: "Depositar", bgColor: "bg-purple-600", icon: IconDeposit, url: "/deposito" },
   { title: "Realizar pagos", bgColor: "bg-green-600", icon: IconReceipt, url: "/recibo" },
-  { title: "Movimientos", bgColor: "bg-blue-600", icon: IconFile, url: "/archivo" },
+  { title: "Movimientos", bgColor: "bg-blue-600", icon: IconFile, url: "/movimientos" },
 ];
 </script>

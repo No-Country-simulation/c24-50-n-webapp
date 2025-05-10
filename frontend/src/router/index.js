@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/modules/landingPage/views/HomePage.vue'
 import LoginView from '../views/LoginView.vue'
 import homeRoutes from '@/modules/homePage/routes.js';
 import AuthRoutes from '@/modules/auth/routes'
+import LandingPage from '@/modules/landingPage/routes.js';
 
 
 const router = createRouter({
@@ -28,7 +29,8 @@ const router = createRouter({
 
     },
     ...homeRoutes,
-    ...AuthRoutes
+    ...AuthRoutes,
+    ...LandingPage
   ],
 })
 

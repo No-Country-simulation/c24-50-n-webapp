@@ -32,7 +32,7 @@
             </g>
         </g>
         <text x="14%" y="24%" dominant-baseline="middle" font-size="24" fill="white">
-            Andree Suarez
+            {{props.nombre}}
         </text>
 
         <text x="14%" y="48%" dominant-baseline="middle" font-size="14" fill="white">
@@ -40,11 +40,11 @@
         </text>
 
         <text x="14%" y="57%" dominant-baseline="middle" font-size="16" fill="white">
-            4756
+            {{ formattedCuenta.primerosCuatro }}
         </text>
 
         <text x="52%" y="57%" dominant-baseline="middle" font-size="16" fill="white">
-            9018
+            {{ formattedCuenta.ultimosCuatro }}
         </text>
 
         <path
@@ -55,7 +55,7 @@
             fill="white" />
 
         <text x="14%" y="68%" dominant-baseline="middle" class="font-semibold" font-size="20" fill="white">
-            $120.000
+            {{ props.balance }}
         </text>
         
         <defs>
@@ -104,6 +104,21 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+    nombre: String,
+    balance: Number,
+    numeroCuenta: String
+})
+
+const formattedCuenta = computed(() => {
+    const numeroCuenta = props.numeroCuenta || '';
+    const primerosCuatro = numeroCuenta.slice(0, 4);
+    const ultimosCuatro = numeroCuenta.slice(-4);
+    return {primerosCuatro, ultimosCuatro};
+});
+
 
 </script>
 
